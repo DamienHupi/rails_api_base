@@ -34,19 +34,16 @@ module App
 
     config.add_autoload_paths_to_load_path = false
 
-    ActionMailer::Base.smtp_settings = {
-      address: 'smtp.sendgrid.net',
-      authentication: :plain,
-      domain: ENV['SERVER_HOST'],
-      enable_starttls_auto: true,
-      password: ENV['SENDGRID_API_KEY'],
-      port: 587,
-      user_name: 'apikey'
+    # Mail configuration
+    config.action_mailer.default_url_options = {
+      :host => ENV['SERVER_HOST'],
+      :protocol => 'https'
     }
-    config.action_mailer.default_url_options = { host: ENV['SERVER_HOST'],
-                                                 port: ENV.fetch('PORT', 3000) }
-    config.action_mailer.default_options = {
-      from: 'no-reply@api.com'
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      address: "smtp-relay.gmail.com",
+      port: 25,
+      domain: "hupi.fr",
     }
 
     config.action_mailer.deliver_later_queue_name = 'mailers'

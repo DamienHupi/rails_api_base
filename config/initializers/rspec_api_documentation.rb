@@ -1,4 +1,4 @@
-unless Rails.env.production?
+unless true #
   module RspecApiDocumentation
     class RackTestClient < ClientBase
       def response_body

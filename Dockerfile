@@ -8,7 +8,7 @@ RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources
 RUN apt update && apt install yarn
 
 ENV WORK_ROOT /src
-ENV APP_HOME $WORK_ROOT/myapp/
+ENV APP_HOME $WORK_ROOT/app/
 ENV LANG C.UTF-8
 ENV GEM_HOME $WORK_ROOT/bundle
 ENV BUNDLE_BIN $GEM_HOME/gems/bin
@@ -26,7 +26,7 @@ ADD Gemfile ./
 ADD Gemfile.lock ./
 RUN bundle install
 
-ADD package.json yarn.lock ./
+ADD yarn.lock ./
 RUN yarn install --check-files
 
 ADD . $APP_HOME
