@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
-  include Pundit
-
+  include Pundit::Authorization
+  
   after_action :verify_authorized,
                except: :index,
                unless: -> { :devise_controller? || :active_admin_controller? }

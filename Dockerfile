@@ -1,4 +1,4 @@
-FROM ruby:2.7.2
+FROM ruby:3.1.2
 
 RUN apt-get update -qq && \
     apt-get install -y build-essential libssl-dev nodejs libpq-dev less vim nano libsasl2-dev
@@ -25,9 +25,6 @@ WORKDIR $APP_HOME
 ADD Gemfile ./
 ADD Gemfile.lock ./
 RUN bundle install
-
-ADD yarn.lock ./
-RUN yarn install --check-files
 
 ADD . $APP_HOME
 
